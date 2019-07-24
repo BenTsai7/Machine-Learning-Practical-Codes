@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Jul 21 15:18:47 2018
-spam文件下的txt为垃圾邮件
-@author: wzy
-"""
 import re
 import numpy as np
 import random
@@ -16,14 +10,11 @@ Parameters:
     
 Returns:
     None
-
-Modify:
-    2018-07-21
 """
 def textParse(bigString):
     # 用特殊符号作为切分标志进行字符串切分，即非字母、非数字
     # \W* 0个或多个非字母数字或下划线字符（等价于[^a-zA-Z0-9_]）
-    listOfTockens = re.split(r'\W*', bigString)
+    listOfTockens = re.split(r'\W', bigString)
     # 除了单个字母，例如大写I，其他单词变成小写，去掉少于两个字符的字符串
     return [tok.lower() for tok in listOfTockens if len(tok) > 2]
 
@@ -36,9 +27,6 @@ Parameters:
     
 Returns:
     vocabSet - 返回不重复的词条列表，也就是词汇表
-
-Modify:
-    2018-07-21
 """
 def createVocabList(dataSet):
     # 创建一个空的不重复列表
@@ -59,9 +47,6 @@ Parameters:
     
 Returns:
     returnVec - 文档向量，词集模型
-
-Modify:
-    2018-07-21
 """
 def setOfWords2Vec(vocabList, inputSet):
     # 创建一个其中所含元素都为0的向量
@@ -88,9 +73,6 @@ Parameters:
     
 Returns:
     returnVec - 文档向量，词袋模型
-
-Modify:
-    2018-07-21
 """
 def setOfWords2Vec(vocabList, inputSet):
     # 创建一个其中所含元素都为0的向量
@@ -119,9 +101,6 @@ Returns:
     p0Vect - 侮辱类的条件概率数组
     p1Vect - 非侮辱类的条件概率数组
     pAbusive - 文档属于侮辱类的概率
-
-Modify:
-    2018-07-21
 """
 def trainNB0(trainMatrix, trainCategory):
     # 计算训练文档数目
@@ -179,9 +158,6 @@ Parameters:
 Returns:
     0 - 属于非侮辱类
     1 - 属于侮辱类
-
-Modify:
-    2018-07-21
 """
 def classifyNB(vec2Classify, p0Vec, p1Vec, pClass1):
     # 对应元素相乘
@@ -206,9 +182,6 @@ Parameters:
     
 Returns:
     None
-
-Modify:
-    2018-07-21
 """
 def spamTest():
     docList = []
@@ -268,4 +241,3 @@ def spamTest():
 
 if __name__ == '__main__':
     spamTest()
-    
